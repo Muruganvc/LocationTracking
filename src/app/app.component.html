@@ -1,0 +1,19 @@
+<div>
+    <h2 style="text-align: center;">Location tracking</h2>
+</div>
+<div *ngIf="default">
+    <div>
+        <div style="float: left; width: 150px;">Enter your Name</div>
+        <div style="float: left; width: 200px;"><input type="text" #userName></div>
+    </div>
+    <div>
+        <div style="float: left; width: 150px;">
+            <button (click)="createComponent(userName.value)">continue</button>
+        </div>
+
+    </div>
+</div>
+<div style="padding-top: 30px;">
+    <template #messagecontainer>
+    </template>
+</div>

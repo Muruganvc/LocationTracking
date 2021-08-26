@@ -1,0 +1,32 @@
+<div id="boxes">
+    <div id="leftbox">
+        <table>
+            <tr>
+              <td>Name</td>
+              <td>{{userName}}</td>
+            </tr>
+            <tr>
+              <td>Ip Address</td>
+              <td>{{ipAddress.ip}}</td>
+            </tr>
+            <tr>
+              <td>Latitude</td>
+              <td>{{latitude}}</td>
+            </tr>
+            <tr>
+              <td>Longitude</td>
+              <td>{{longitude}}</td>
+            </tr>
+          </table>
+    </div>
+
+    <div id="middlebox">
+        <div style="padding-top: 50px;" id="map"></div>
+    </div>
+
+    <div id="rightbox">
+        <div>
+            <button (click)='close()'>Exit</button>
+        </div>
+    </div>
+</div>

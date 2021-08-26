@@ -1,0 +1,35 @@
+#map { height: 450px; width: 665px; margin: auto; }
+
+#leftbox {
+    float:left; 
+    width:25%;
+    height:500px;
+}
+#middlebox{
+    float:left; 
+    width:50%;
+    height:500px;
+    border-style: solid;
+    border-color: coral;
+}
+#rightbox{
+    float:right;
+    width:5%;
+    height:500px;
+}
+h1{
+    color:green;
+    text-align:center;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+  }
+  
+  td, th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+  }
