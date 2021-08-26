@@ -20,7 +20,6 @@ export class LocationTrackingComponent implements OnInit {
   ngOnInit(): void {
     this.http.getIPAddress().subscribe(result => {
       this.ipAddress = result;
-      console.log(result);
     })
     this.getGeoLocation();
   }

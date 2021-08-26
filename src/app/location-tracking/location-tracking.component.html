@@ -7,7 +7,7 @@
             </tr>
             <tr>
               <td>Ip Address</td>
-              <td>{{ipAddress.ip}}</td>
+              <td *ngIf="ipAddress">{{ipAddress.ip}}</td>
             </tr>
             <tr>
               <td>Latitude</td>
