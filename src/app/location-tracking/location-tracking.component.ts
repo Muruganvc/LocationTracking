@@ -17,7 +17,7 @@ export class LocationTrackingComponent implements OnInit {
   longitude: any;
   ipAddress: any;
 
-  userDetails : string;
+  locationDetails: string;
 
   ngOnInit(): void {
     this.http.getIPAddress().subscribe(result => {
@@ -43,6 +43,13 @@ export class LocationTrackingComponent implements OnInit {
       this.longitude = location.longitude;
       this.latitude = location.latitude;
       console.log(`lat ${pos.coords.latitude} lon ${pos.coords.longitude}`);
+
+      this.http.getLocationDetails(this.latitude, this.longitude, 'pk.7cbf6182f55523dc9b9d46159e328485').subscribe((result: any) => {
+        let addr = result.address;
+        this.locationDetails = `City : ${addr.city}, District  : ${addr.city_district}, clinic : ${addr.clinic}, Country : ${addr.country},country_code : ${addr.country_code}, neighbourhood : ${addr.neighbourhood}, postcode : ${addr.postcode}, road : ${addr.road},state : ${addr.state}, state_district : ${addr.state_district}, suburb : ${addr.suburb}`;
+        console.log(result);
+      })
+
       var mymap = L.map('map').setView([location.latitude, location.longitude], 13);
 
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXVydWdhbnZjIiwiYSI6ImNrc3NsczAydDB4bXgycG9kNTRjaDQyaGoifQ.NELZ51aOmkzZXh9J44Qx9w', {
@@ -56,15 +63,15 @@ export class LocationTrackingComponent implements OnInit {
 
       var marker = L.marker([location.latitude, location.longitude]).addTo(mymap);
 
-      var circle = L.circle([location.latitude, location.longitude], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 500
-      }).addTo(mymap);
+      // var circle = L.circle([location.latitude, location.longitude], {
+      //   color: 'red',
+      //   fillColor: '#f03',
+      //   fillOpacity: 0.5,
+      //   radius: 500
+      // }).addTo(mymap);
 
       marker.bindPopup("Hi, " + this.userName).openPopup();
-      circle.bindPopup(`Hey ${this.userName}, this is your corrent location`);
+      // circle.bindPopup(`Hey ${this.userName}, this is your corrent location`);
       var popup = L.popup()
         .setLatLng([location.latitude, location.longitude])
         .setContent("Hi," + this.userName)
