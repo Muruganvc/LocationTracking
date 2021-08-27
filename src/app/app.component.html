@@ -2,6 +2,12 @@
     <h2 style="text-align: center;">Location tracking</h2>
 </div>
 <div *ngIf="default">
+    <h4><span style="color:blue;"> Your Details are  </span>{{details}}</h4>
+   </div>
+<div *ngIf="isMobile">
+    <h4>You are using Mobile Device, So kindly go to enable Desktop site in browser settig</h4>
+</div>
+<div *ngIf="default">
     <div>
         <div style="float: left; width: 150px;">Enter your Name</div>
         <div style="float: left; width: 200px;"><input type="text" #userName></div>
@@ -10,10 +16,9 @@
         <div style="float: left; width: 150px;">
             <button (click)="createComponent(userName.value)">continue</button>
         </div>
-
     </div>
 </div>
-<div style="padding-top: 30px;">
+<div>
     <template #messagecontainer>
     </template>
 </div>

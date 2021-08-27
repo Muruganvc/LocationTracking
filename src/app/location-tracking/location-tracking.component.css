@@ -1,4 +1,4 @@
-#map { height: 450px; width: 665px; margin: auto; }
+#map { height: 350px; width: 665px; margin: auto; }
 
 #leftbox {
     float:left; 
@@ -8,7 +8,7 @@
 #middlebox{
     float:left; 
     width:50%;
-    height:500px;
+    height:400px;
     border-style: solid;
     border-color: coral;
 }
@@ -21,7 +21,9 @@ h1{
     color:green;
     text-align:center;
 }
-
+.clr{
+    color: rgb(0, 255, 0);
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;

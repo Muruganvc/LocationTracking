@@ -17,6 +17,8 @@ export class LocationTrackingComponent implements OnInit {
   longitude: any;
   ipAddress: any;
 
+  userDetails : string;
+
   ngOnInit(): void {
     this.http.getIPAddress().subscribe(result => {
       this.ipAddress = result;
@@ -39,7 +41,7 @@ export class LocationTrackingComponent implements OnInit {
 
       const location = pos.coords;
       this.longitude = location.longitude;
-      this.latitude = location.latitude
+      this.latitude = location.latitude;
       console.log(`lat ${pos.coords.latitude} lon ${pos.coords.longitude}`);
       var mymap = L.map('map').setView([location.latitude, location.longitude], 13);
 

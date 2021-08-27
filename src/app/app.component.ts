@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { LocationTrackingComponent } from './location-tracking/location-tracking.component';
-
+import { DeviceDetectorService } from 'ngx-device-detector';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,11 +8,25 @@ import { LocationTrackingComponent } from './location-tracking/location-tracking
 })
 export class AppComponent implements OnInit {
   componentRef: any;
-
   default: boolean = true;
-
+  deviceInfo = null;
+  isMobile :boolean = false;
+  details :string ;
   @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
-  constructor(private resolver: ComponentFactoryResolver) { }
+  constructor(private resolver: ComponentFactoryResolver,private deviceService: DeviceDetectorService) {
+    this.epicFunction();
+   }
+  
+
+  epicFunction() {
+    console.log('hello `Home` component');
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    this.isMobile = this.deviceService.isMobile();
+    const isTablet = this.deviceService.isTablet();
+    const isDesktopDevice = this.deviceService.isDesktop();
+    console.log(this.deviceInfo);
+    this.details = `Browser : ${this.deviceInfo.browser}, Browser Version: ${this.deviceInfo.browser_version}, Device : ${this.deviceInfo.device},Device type : ${this.deviceInfo.deviceType}, Orientation : ${this.deviceInfo.orientation}, Operating System : ${this.deviceInfo.os}, os_version : ${this.deviceInfo.os_version}`
+  }
 
   ngOnInit(): void {
   }
