@@ -10,13 +10,13 @@ export class AppComponent implements OnInit {
   componentRef: any;
   default: boolean = true;
   deviceInfo = null;
-  isMobile :boolean = false;
-  details :string ;
+  isMobile: boolean = false;
+  details: string;
   @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
-  constructor(private resolver: ComponentFactoryResolver,private deviceService: DeviceDetectorService) {
+  constructor(private resolver: ComponentFactoryResolver, private deviceService: DeviceDetectorService) {
     this.epicFunction();
-   }
-  
+  }
+
 
   epicFunction() {
     console.log('hello `Home` component');
@@ -30,13 +30,27 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
   }
-   
+
+  validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   createComponent(userName: string, email?: string) {
 
-    if(userName.trim() == ""){
+    if (userName.trim() == "") {
       alert('Enter user Name');
       return false;
     }
+    if (email.trim() == "") {
+      alert('Enter mail id');
+      return false;
+    }
+    if (!this.validateEmail(email)) {
+      alert('Invalid mail id');
+      return false;
+    }
+
     this.default = false;
     this.entry.clear();
     const factory = this.resolver.resolveComponentFactory(LocationTrackingComponent);

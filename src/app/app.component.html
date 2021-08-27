@@ -3,10 +3,11 @@
     <h3 style="text-align: center; color: red;">Enable your device Location</h3>
 </div>
 <div *ngIf="default">
-    <h4><span style="color:blue;"> Your Details are  </span>{{details}}</h4>
-   </div>
+    <h4><span style="color:blue;"> Your Details are </span>{{details}}</h4>
+</div>
 <div *ngIf="isMobile">
-    <h4><b> <span style="color:red">You are using Mobile Device, So kindly go to enable Desktop site in browser setting</span></b></h4>
+    <h4><b> <span style="color:red">You are using Mobile Device, So kindly go to enable Desktop site in browser
+                setting</span></b></h4>
 </div>
 <div *ngIf="default">
     <div>
@@ -14,8 +15,12 @@
         <div style="float: left; width: 200px;"><input type="text" #userName></div>
     </div>
     <div>
+        <div style="float: left; width: 150px;">Enter your Email</div>
+        <div style="float: left; width: 200px;"><input type="text" #mail></div>
+    </div>
+    <div>
         <div style="float: left; width: 150px;">
-            <button (click)="createComponent(userName.value)">continue</button>
+            <button (click)="createComponent(userName.value,mail.value)">continue</button>
         </div>
     </div>
 </div>

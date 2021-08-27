@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IpAddressService } from '../ip-address.service';
+import { locationDetails } from '../locationDetails';
 
 declare const L: any;
 
@@ -16,15 +17,14 @@ export class LocationTrackingComponent implements OnInit {
   latitude: any
   longitude: any;
   ipAddress: any;
-
   locationDetails: string;
-
   ngOnInit(): void {
-    this.http.getIPAddress().subscribe(result => {
-      this.ipAddress = result;
-      console.log(result);
+    this.http.getIPAddress().subscribe((result: any) => {
+      if (result) {
+        this.getGeoLocation(result.ip);
+        this.ipAddress = result;
+      }
     })
-    this.getGeoLocation();
   }
 
   close() {
@@ -33,16 +33,24 @@ export class LocationTrackingComponent implements OnInit {
       window.close();
     }
   }
-  getGeoLocation() {
+  getGeoLocation(ipAddress: string) {
     if (!navigator.geolocation) {
       console.log('location is not supported');
     }
     navigator.geolocation.getCurrentPosition(pos => {
-
       const location = pos.coords;
       this.longitude = location.longitude;
       this.latitude = location.latitude;
       console.log(`lat ${pos.coords.latitude} lon ${pos.coords.longitude}`);
+      let user = new locationDetails();
+      user.toMaild = this.userMailId;
+      user.ipAddress = ipAddress;
+      user.latitude = this.latitude;
+      user.longitude = this.longitude;
+      user.name = this.userName;
+      this.http.sendMail(user).subscribe((result: any) => {
+        console.log(result);
+      });
 
       this.http.getLocationDetails(this.latitude, this.longitude, 'pk.7cbf6182f55523dc9b9d46159e328485').subscribe((result: any) => {
         let addr = result.address;
